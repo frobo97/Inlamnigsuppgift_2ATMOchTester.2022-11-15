@@ -6,12 +6,10 @@ public class Accounts {
      */
 
     private String accountNumber;
-    private String userNameForAccount;
     private int amountOnAccount;
 
-    public Accounts(String accountNumber, String userNameForAccount, int amountOnAccount) {
+    public Accounts(String accountNumber, int amountOnAccount) {
         this.accountNumber = accountNumber;
-        this.userNameForAccount = userNameForAccount;
         this.amountOnAccount = amountOnAccount;
     }
 
@@ -31,11 +29,4 @@ public class Accounts {
         this.amountOnAccount = amountOnAccount;
     }
 
-    public String getUserNameForAccount() {
-        return userNameForAccount;
-    }
-
-    public void setUserNameForAccount(String userNameForAccount) {
-        this.userNameForAccount = userNameForAccount;
-    }
 }

@@ -9,6 +9,7 @@ public class ATM {
     ett Bank-objekt (Bank) och ett enskilt användare-objekt som är ”just nu inloggad” (User).
 */
 
+                // linstan users = Linus bankUsers
     private List<User> users = new ArrayList<>();
     private List<Accounts> masterAccounts = new ArrayList<>();
 
@@ -21,17 +22,30 @@ public class ATM {
     }
 
     User currentUser;
+    User userTryingToLogin;
     Bank bank = new Bank();
 
-
     public void defaultUsers() {
-        User user = new User("frode", "123", new ArrayList<Accounts>());
-        User user2 = new User("java", "345", new ArrayList<Accounts>());
-        User user3 = new User("jensen", "678", new ArrayList<Accounts>());
-        this.users.add(user);
-        this.users.add(user2);
-        this.users.add(user3);
+        List<Accounts> frodeAccounts = new ArrayList<>();
+        frodeAccounts.add(new Accounts("f123",1000));
+        frodeAccounts.add(new Accounts("f1234",9999));
+        User user = new User("frode","123",frodeAccounts);
+
+        List<Accounts> jensenAccounts = new ArrayList<>();
+        frodeAccounts.add(new Accounts("j123",10));
+        frodeAccounts.add(new Accounts("j1234",99));
+        User user2 = new User("jensen","789",jensenAccounts);
     }
+
+
+//    public void defaultUsers() {   // gammal och används ej.
+//        User user = new User("frode", "123", new ArrayList<Accounts>());
+//        User user2 = new User("java", "345", new ArrayList<Accounts>());
+//        User user3 = new User("jensen", "678", new ArrayList<Accounts>());
+//        this.users.add(user);
+//        this.users.add(user2);
+//        this.users.add(user3);
+//    }
 
     public void run() {
     /*

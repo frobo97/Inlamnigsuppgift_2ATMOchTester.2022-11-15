@@ -11,7 +11,7 @@ public class User {
 
     private String userName;
     private String password;
-    private List<Accounts> accountList = new ArrayList<Accounts>();
+    private List<Accounts> accountList;
 
 
     public User(String name, String password, List<Accounts> accountList) {
