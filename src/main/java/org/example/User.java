@@ -14,8 +14,8 @@ public class User {
     private List<Accounts> accountList;
 
 
-    public User(String name, String password, List<Accounts> accountList) {
-        this.userName = name;
+    public User(String userName, String password, List<Accounts> accountList) {
+        this.userName = userName;
         this.password = password;
         this.accountList = accountList;
     }
