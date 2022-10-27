@@ -12,20 +12,23 @@ public class ATM {
     // linstan users = Linus bankUsers
     private List<User> users = new ArrayList<>();
     private List<Accounts> masterAccounts = new ArrayList<>();
+
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
     public List<User> getUsers() {
         return users;
     }
+
     User currentUser;
     User userTryingToLogin;
     Bank bank = new Bank();  // detta bara för att uppgiften säger det
 
     public void defaultUsers() {
         List<Accounts> frodeAccounts = new ArrayList<>();
-        frodeAccounts.add(new Accounts("f123", 1000));
-        frodeAccounts.add(new Accounts("f1234", 9999));
+        frodeAccounts.add(new Accounts("f123", 100));
+        frodeAccounts.add(new Accounts("f1234", 999));
         User user = new User("frode", "123", frodeAccounts);
         users.add(user);
 
@@ -42,17 +45,19 @@ public class ATM {
     Bankomaten har funktionen Run(). I denna kan användaren välja olika
     val. Först skall de logga in.
      */
+        defaultUsers();
 
         String userName = ScannerBoy.getString("Enter Username");
         String password = ScannerBoy.getString("Enter Password");
         currentUser = logIn(new User(userName, password, null));
         if (currentUser == null) {
+            System.out.println("Incorrect password or Username");
             System.exit(-1);
         } else {
             System.out.println("vi lyckades\n" + currentUser.getName());
         }
-
     }
+
 
     public User logIn(User logIn) {  //klar 2022-10-26
         /*
@@ -72,65 +77,58 @@ public class ATM {
         return null;
     }
 
-    //    public void logIn() {
-//        /*
-//        Bankomaten skall ha en LogIn() funktion. Användaren skriver in ett
-//        användarnamn (String) och lösenord (String), och ifall de stämmer med
-//        en användare i listan av användare så blir personen inloggad
-//         */
-//        Scanner scannerIn = new Scanner(System.in);
-//        boolean loopBreak = false;
-//        do {
-//
-//            System.out.println("Please enter your username");
-//            String tempUsername = scannerIn.nextLine();
-//            for (int i = 0; i < users.size(); i++) {
-//
-//                if (tempUsername.trim().equals(users.get(i).getName())) {
-//
-//                    System.out.println("Please enter your Password");
-//                    String tempPassword = scannerIn.nextLine();
-//                    tempUsername.trim().equals(users.get(i).getName());
-//                    tempPassword.trim().equals(users.get(i).getPassword());
-//                    if (tempPassword.trim().equals(users.get(i).getPassword())) {
-//                        loopBreak = true;
-//                    }
-//
-//                } else if (!loopBreak) {
-//                    System.out.println("Invalid username or password. \nTry again.");
-//                    break;
-//                }
-//            }
-//        } while (!loopBreak);
-//        System.out.println("login works ");
-//    }
-//
-    public void checkAccountBalance() {
+    public int checkAccountBalance(String accountNumber) {
         /*
         Bankomaten skall ha CheckAccountBalance() funktion, som tar en string.
         Den skall då gå igenom de konton som användaren har, och har de ett
         konto som har det konto-nummer som efterfrågas så ges det tillbaka hur
         mycket pengar är i detta konto.
          */
-
+        // cUAN --> currentUserAccountNumber
+        for (Accounts cUAN : currentUser.getAccountList()) {
+            if (cUAN.getAccountNumber().equals(accountNumber)) {
+                System.out.println("test " + cUAN.getAmountOnAccount());
+                return cUAN.getAmountOnAccount();
+            }
+        }
+        return 0;
     }
 
-    public void depositMoney() {
+    public int depositMoney(String accountNumber, int depositAmount) {
         /*
         Bankomaten skall ha en DepositMoney() funktion, som tar en string som
         är kontonumret och en int som är hur mycket man vill lägga in i detta
         konto. Kolla om inskickade kontonumret är någon av de tillgängliga och
         lägg in detta värde i detta konto.
          */
+        // cUAN --> currentUserAccountNumber
+        for (Accounts cUAN : currentUser.getAccountList()) {
+            if (cUAN.getAccountNumber().equals(accountNumber)) {
+                cUAN.setAmountOnAccount(cUAN.getAmountOnAccount()+depositAmount);
+                System.out.println("test " + cUAN.getAmountOnAccount());
+                return cUAN.getAmountOnAccount();
+            }
+        }
+        return 0;
     }
 
-    public void withdrawMoney() {
+
+    public int withdrawMoney(String accountNumber, int depositAmount) {
         /*
         Bankomaten skall ha en WithdrawMoney() funktion, som tar en string
         som är kontonumret och en int som är hur mycket pengar man vill
         hämta. Om nuvarande inloggad användare har detta konto och kontot
         innehåller tillräckligt med pengar skall detta hämtas
          */
+        // cUAN --> currentUserAccountNumber
+        for (Accounts cUAN : currentUser.getAccountList()) {
+            if (cUAN.getAccountNumber().equals(accountNumber)) {
+                cUAN.setAmountOnAccount(cUAN.getAmountOnAccount()-depositAmount);
+                System.out.println("test " + cUAN.getAmountOnAccount());
+                return cUAN.getAmountOnAccount();
+            }
+        }
+        return 0;
     }
 
 }
