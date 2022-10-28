@@ -6,11 +6,11 @@ public class Accounts {
      */
 
     private String accountNumber;
-    private int amountOnAccount;
+    private int balanceOnAccount;
 
-    public Accounts(String accountNumber, int amountOnAccount) {
+    public Accounts(String accountNumber, int balanceOnAccount) {
         this.accountNumber = accountNumber;
-        this.amountOnAccount = amountOnAccount;
+        this.balanceOnAccount = balanceOnAccount;
     }
 
     public String getAccountNumber() {
@@ -21,12 +21,12 @@ public class Accounts {
         this.accountNumber = accountNumber;
     }
 
-    public int getAmountOnAccount() {
-        return amountOnAccount;
+    public int getBalanceOnAccount() {
+        return balanceOnAccount;
     }
 
-    public void setAmountOnAccount(int amountOnAccount) {
-        this.amountOnAccount = amountOnAccount;
+    public void setBalanceOnAccount(int balanceOnAccount) {
+        this.balanceOnAccount = balanceOnAccount;
     }
 
 }

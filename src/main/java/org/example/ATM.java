@@ -22,7 +22,6 @@ public class ATM {
     }
 
     User currentUser;
-    User userTryingToLogin;
     Bank bank = new Bank();  // detta bara för att uppgiften säger det
 
     public void defaultUsers() {
@@ -70,7 +69,8 @@ public class ATM {
                 if (userTryingToLogin.getPassword().equals(logIn.getPassword())) {
                     return userTryingToLogin;
                 } else {
-                    System.out.println("fail");
+                    System.out.println("Login failed\n" +
+                            "Incorrect username or password");
                 }
             }
         }
@@ -87,8 +87,8 @@ public class ATM {
         // cUAN --> currentUserAccountNumber
         for (Accounts cUAN : currentUser.getAccountList()) {
             if (cUAN.getAccountNumber().equals(accountNumber)) {
-                System.out.println("test " + cUAN.getAmountOnAccount());
-                return cUAN.getAmountOnAccount();
+                System.out.println("test " + cUAN.getBalanceOnAccount());
+                return cUAN.getBalanceOnAccount();
             }
         }
         return 0;
@@ -104,9 +104,9 @@ public class ATM {
         // cUAN --> currentUserAccountNumber
         for (Accounts cUAN : currentUser.getAccountList()) {
             if (cUAN.getAccountNumber().equals(accountNumber)) {
-                cUAN.setAmountOnAccount(cUAN.getAmountOnAccount() + depositAmount);
-                System.out.println("test " + cUAN.getAmountOnAccount());
-                return cUAN.getAmountOnAccount();
+                cUAN.setBalanceOnAccount(cUAN.getBalanceOnAccount() + depositAmount);
+                System.out.println("test " + cUAN.getBalanceOnAccount());
+                return cUAN.getBalanceOnAccount();
             }
         }
         return 0;
@@ -123,13 +123,13 @@ public class ATM {
         // cUAN --> currentUserAccountNumber
         for (Accounts cUAN : currentUser.getAccountList()) {
             if (cUAN.getAccountNumber().equals(accountNumber)) {
-                if (withdrawAmount <= cUAN.getAmountOnAccount()) {
-                    cUAN.setAmountOnAccount(cUAN.getAmountOnAccount() - withdrawAmount);
-                    System.out.println("test " + cUAN.getAmountOnAccount());
-                    return cUAN.getAmountOnAccount();
+                if (withdrawAmount <= cUAN.getBalanceOnAccount()) {
+                    cUAN.setBalanceOnAccount(cUAN.getBalanceOnAccount() - withdrawAmount);
+                    System.out.println("test " + cUAN.getBalanceOnAccount());
+                    return cUAN.getBalanceOnAccount();
                 } else {
                     System.out.println("Insufficient funds on account\n" +
-                            "Funds available = " + cUAN.getAmountOnAccount());
+                            "Funds available = " + cUAN.getBalanceOnAccount());
                 }
             }
         }

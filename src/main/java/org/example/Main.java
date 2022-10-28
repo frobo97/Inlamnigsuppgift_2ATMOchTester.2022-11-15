@@ -8,7 +8,7 @@ public class Main {
 
         atm.checkAccountBalance("j1234");
         atm.depositMoney("j1234", 1);
-        atm.withdrawMoney("j1234",1);
+        atm.withdrawMoney("j1234",101);
 
     }
 }
