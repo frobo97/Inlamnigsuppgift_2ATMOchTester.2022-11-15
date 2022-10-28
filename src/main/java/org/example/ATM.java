@@ -33,8 +33,8 @@ public class ATM {
         users.add(user);
 
         List<Accounts> jensenAccounts = new ArrayList<>();
-        frodeAccounts.add(new Accounts("j123", 10));
-        frodeAccounts.add(new Accounts("j1234", 99));
+        jensenAccounts.add(new Accounts("j123", 10));
+        jensenAccounts.add(new Accounts("j1234", 99));
         User user2 = new User("jensen", "789", jensenAccounts);
         users.add(user2);
 
@@ -113,7 +113,7 @@ public class ATM {
     }
 
 
-    public int withdrawMoney(String accountNumber, int depositAmount) {
+    public int withdrawMoney(String accountNumber, int withdrawAmount) {
         /*
         Bankomaten skall ha en WithdrawMoney() funktion, som tar en string
         som är kontonumret och en int som är hur mycket pengar man vill
@@ -123,7 +123,7 @@ public class ATM {
         // cUAN --> currentUserAccountNumber
         for (Accounts cUAN : currentUser.getAccountList()) {
             if (cUAN.getAccountNumber().equals(accountNumber)) {
-                cUAN.setAmountOnAccount(cUAN.getAmountOnAccount()-depositAmount);
+                cUAN.setAmountOnAccount(cUAN.getAmountOnAccount()-withdrawAmount);
                 System.out.println("test " + cUAN.getAmountOnAccount());
                 return cUAN.getAmountOnAccount();
             }

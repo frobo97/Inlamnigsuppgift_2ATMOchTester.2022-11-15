@@ -6,9 +6,9 @@ public class Main {
         ATM atm = new ATM();
         atm.run();
 
-        atm.checkAccountBalance("f1234");
-        atm.depositMoney("f1234", 1);
-        atm.withdrawMoney("f1234",1);
+        atm.checkAccountBalance("j1234");
+        atm.depositMoney("j1234", 1);
+        atm.withdrawMoney("j1234",1);
 
     }
 }
