@@ -104,7 +104,7 @@ public class ATM {
         // cUAN --> currentUserAccountNumber
         for (Accounts cUAN : currentUser.getAccountList()) {
             if (cUAN.getAccountNumber().equals(accountNumber)) {
-                cUAN.setAmountOnAccount(cUAN.getAmountOnAccount()+depositAmount);
+                cUAN.setAmountOnAccount(cUAN.getAmountOnAccount() + depositAmount);
                 System.out.println("test " + cUAN.getAmountOnAccount());
                 return cUAN.getAmountOnAccount();
             }
@@ -123,9 +123,14 @@ public class ATM {
         // cUAN --> currentUserAccountNumber
         for (Accounts cUAN : currentUser.getAccountList()) {
             if (cUAN.getAccountNumber().equals(accountNumber)) {
-                cUAN.setAmountOnAccount(cUAN.getAmountOnAccount()-withdrawAmount);
-                System.out.println("test " + cUAN.getAmountOnAccount());
-                return cUAN.getAmountOnAccount();
+                if (withdrawAmount <= cUAN.getAmountOnAccount()) {
+                    cUAN.setAmountOnAccount(cUAN.getAmountOnAccount() - withdrawAmount);
+                    System.out.println("test " + cUAN.getAmountOnAccount());
+                    return cUAN.getAmountOnAccount();
+                } else {
+                    System.out.println("Insufficient funds on account\n" +
+                            "Funds available = " + cUAN.getAmountOnAccount());
+                }
             }
         }
         return 0;
